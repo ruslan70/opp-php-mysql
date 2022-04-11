@@ -29,14 +29,17 @@ b5-tem
         $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // create  the SELECT query and fetch all table rows as associative array.
-        // Bsp.: SELECT * FROM Customers;
+        // Bsp.: SELECT * FROM :
         // $query = $dbConnection->query("SELECT * FROM  Books"); // https://www.php.net/manual/de/pdo.query.php
         // $query = $dbConnection->query("SELECT Author, Title FROM  Books");
         // $query = $dbConnection->query("SELECT * FROM `Books` WHERE ID=10");
         // $query = $dbConnection->query("SELECT * FROM Books WHERE Title='Space'");
         // $query = $dbConnection->query("SELECT * FROM `Books` WHERE Category='HTML'");
         // $query = $dbConnection->query("SELECT * FROM `Books` WHERE Year>2020");
-        $query = $dbConnection->query("SELECT `Title`, `Author` FROM `Books` WHERE 1");
+        // $query = $dbConnection->query("SELECT `Title`, `Author` FROM `Books` WHERE 1");
+        // $query = $dbConnection->query("SELECT * FROM Books ORDER BY Year");
+        // $query = $dbConnection->query("SELECT * FROM Books WHERE Title LIKE '%book%'");
+        $query = $dbConnection->query("SELECT * FROM `Books` WHERE Year>2019 ORDER BY Year LIMIT 4");
 
         // um header herauszuholen, aber nach < while ($row = $query->fetch(PDO::FETCH_ASSOC)) > braucht dies nicht mehr
         // $query->fetch(PDO::FETCH_ASSOC);  //https://www.php.net/manual/de/pdostatement.fetch.php
