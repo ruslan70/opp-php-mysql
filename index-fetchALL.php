@@ -35,7 +35,7 @@ b5-tem
         // each element of the array inside the loop as the new variable $question. (Durchlaufen Sie alle Elemente im Array 
         // $questions und verwenden Sie jedes Element des Arrays innerhalb der Schleife als neue Variable $question).
 
-        foreach ($questions as $question)  {
+        foreach ($questions as $key => $question)  {
             // prepare an SQL statement with a placeholder ? the help of the db connection $dbConnection 
             // (Bereiten Sie eine SQL-Anweisung mit einem Platzhalter ? vor die Hilfe der db-Verbindung $dbConnection).
             $subQuery = $dbConnection->prepare("SELECT * From Answers where Answers.QuestionId = ?");
@@ -49,11 +49,11 @@ b5-tem
             $answers = $subQuery->fetchALL(PDO::FETCH_ASSOC);
             // create a new element 'answers' in the $question-element and store the new array $answers in this element
             // (Erstellen Sie ein neues Element „answers“ im $question-Element und speichern Sie das neue Array $answers in diesem Element).
-            $question['answers'] = $answers;
+            $questions[$key]['answers'] = $answers;
             
             // DEVONLY: Debug output to see what is inside the array $question.
             print "<pre>";
-            print_r($question);
+            print_r($questions);
             print "</pre>";
         
         
